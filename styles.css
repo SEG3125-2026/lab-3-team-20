@@ -43,3 +43,14 @@ footer{
     font-size: .75em;
 }
 
+#addCart{
+    color:black;
+    border: 2px solid #fa003f; 
+    Padding: 5px;
+    background-color: white;
+    border-radius: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    Font-size:1em;
+    Font-weight:bold;
+
+}

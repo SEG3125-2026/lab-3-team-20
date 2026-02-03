@@ -43,6 +43,10 @@ footer{
     font-size: .75em;
 }
 
+.tabContent{
+    display: none;
+}
+
 #addCart{
     color:black;
     border: 2px solid #fa003f; 
@@ -50,7 +54,7 @@ footer{
     background-color: white;
     border-radius: 15px;
     font-family: 'Courier New', Courier, monospace;
-    Font-size:1em;
-    Font-weight:bold;
+    font-size:1em;
+    font-weight:bold;
 
 }

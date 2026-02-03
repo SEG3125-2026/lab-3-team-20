@@ -1,3 +1,4 @@
+
 <! DOCTYPE html>
     <html>
         <head>
@@ -37,6 +38,16 @@
         <div class ="tabContent" id="products">
             <h3 class="header">Product for you</h3>
             <p>We selected these items for you based on your preferences.</p>
+            
+            <div class="slidecontainer">
+                <p>Select the max price you wish to pay:</p>
+                <input type="range" min="1" max="10" value="10" class="slider" id="priceRange" onclick="getMaxPrice()">
+                <br>
+                <p class="sameLine">The max price is currently: </p>
+                <p class="sameLine" id="maxPrice">$10</p>
+            </div>
+            
+            <br>
             Choose items to buy:
             <div id="showProducts"></div>
             <button id="addCart" type="button" onclick="addToCart()">Add items to your cart</button>
@@ -54,3 +65,5 @@
         <script src="script.js"></script>
         </body>
 </html>
+
+

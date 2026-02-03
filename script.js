@@ -27,6 +27,11 @@ function openMenu(tabName){
 
 }
 
+function getMaxPrice() {
+    let x = document.getElementById("priceRange").value;
+    document.getElementById("maxPrice").innerHTML = "$"+x;
+}
+
 function showProducts(){
     const diet=document.getElementById("diet").value;
     const productType = document.getElementById("productType").value;

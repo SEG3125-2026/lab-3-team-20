@@ -30,6 +30,25 @@ function openMenu(tabName){
 function getMaxPrice() {
     let x = document.getElementById("priceRange").value;
     document.getElementById("maxPrice").innerHTML = "$"+x;
+    
+    const allProducts = showProducts();
+
+    let afforadableProducts = allProducts.filter(product =>{
+        if(product.price > x){
+            return false;
+        }return true;
+    });
+ 
+    const productDiv=document.getElementById("showProducts");
+    productDiv.innerHTML="";
+
+    afforadableProducts.forEach((product,index) =>{
+        productDiv.innerHTML += `
+        <input type="checkbox" id="product${index}"value="${product.name}">
+        ${product.name} - $${product.price.toFixed(2)}<br>
+        `;
+    });
+
 }
 
 function showProducts(){
@@ -47,7 +66,7 @@ function showProducts(){
         }
         if (productType === "non-organic" && product.organic) {
             return false;
-        }
+        } 
         return true;
     });
 
@@ -61,6 +80,8 @@ function showProducts(){
         ${product.name} - $${product.price.toFixed(2)}<br>
         `;
     });
+
+    return filteredProducts;
 
 }
 

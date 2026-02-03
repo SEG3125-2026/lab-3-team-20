@@ -22,7 +22,7 @@ function openMenu(tabName){
     document.getElementById(clickedTab).style.display="block";
 
     if (clickedTab==="products"){
-        showProducts();
+        showProducts(document.getElementById("priceRange").value);
     }
 
 }
@@ -30,28 +30,11 @@ function openMenu(tabName){
 function getMaxPrice() {
     let x = document.getElementById("priceRange").value;
     document.getElementById("maxPrice").innerHTML = "$"+x;
+    showProducts(x);
     
-    const allProducts = showProducts();
-
-    let afforadableProducts = allProducts.filter(product =>{
-        if(product.price > x){
-            return false;
-        }return true;
-    });
- 
-    const productDiv=document.getElementById("showProducts");
-    productDiv.innerHTML="";
-
-    afforadableProducts.forEach((product,index) =>{
-        productDiv.innerHTML += `
-        <input type="checkbox" id="product${index}"value="${product.name}">
-        ${product.name} - $${product.price.toFixed(2)}<br>
-        `;
-    });
-
 }
 
-function showProducts(){
+function showProducts(maxPrice){
     const diet=document.getElementById("diet").value;
     const productType = document.getElementById("productType").value;
     let filteredProducts=products.filter(product =>{
@@ -66,7 +49,9 @@ function showProducts(){
         }
         if (productType === "non-organic" && product.organic) {
             return false;
-        } 
+        } if(product.price > maxPrice){
+            return false;
+        }
         return true;
     });
 

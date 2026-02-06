@@ -38,7 +38,17 @@ footer{
     font-size: 0.80em;
 }
 
-.tabLinks:hover{
+#categoryButton{
+    color:black;
+    border: 1px solid #fa003f; 
+    background-color: white;
+    border-radius: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.80em;
+    padding: 5px;
+}
+
+.tabLinks:hover, #categoryButton:hover{
     cursor: pointer;
     color: #fa003f; 
 }
@@ -71,3 +81,15 @@ footer{
     cursor: pointer;
     color: #fa003f; 
 }
+
+/* #categoryDiv{
+    display: inline-block;
+    width: fit-content;
+} */
+.sub_categories{
+    display: inline-block;
+}
+
+/* div{
+    padding: 10px;;
+} */

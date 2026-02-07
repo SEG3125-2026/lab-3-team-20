@@ -212,13 +212,18 @@ function displayCart() {
     cartDiv.innerHTML = `
         <table class="productTable">
             <tr>
+                <th>Image</th>
                 <th>Product</th>
                 <th>Price</th>
             </tr>
     `;
+
     cart.forEach(item => {
         cartDiv.innerHTML += `
             <tr>
+                <td>
+                    <img src="${item.image}" class="productImg">
+                </td>
                 <td>${item.name}</td>
                 <td>$${item.price.toFixed(2)}</td>
             </tr>
@@ -228,9 +233,11 @@ function displayCart() {
 
     cartDiv.innerHTML += `
             <tr>
+                <td></td>
                 <td><strong>Total</strong></td>
                 <td><strong>$${total.toFixed(2)}</strong></td>
             </tr>
         </table>
     `;
 }
+

@@ -82,14 +82,6 @@ footer{
     color: #fa003f; 
 }
 
-/* #categoryDiv{
-    display: inline-block;
-    width: fit-content;
-} */
-.sub_categories{
-    display: inline-block;
+#showProducts div{
+    display:list-item;
 }
-
-/* div{
-    padding: 10px;;
-} */

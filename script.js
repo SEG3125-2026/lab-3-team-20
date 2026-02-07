@@ -211,35 +211,36 @@ function displayCart() {
 
     cartDiv.innerHTML = `
         <table class="productTable">
-            <tr>
-                <th>Image</th>
-                <th>Product</th>
-                <th>Price</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     `;
 
-    const table = cartDiv.querySelector("table");
-    
+    const tbody = cartDiv.querySelector("tbody");
+
     cart.forEach(item => {
-        cartDiv.innerHTML += `
-            <tr>
-                <td>
-                    <img src="${item.image}" class="productImg">
-                </td>
-                <td>${item.name}</td>
-                <td>$${item.price.toFixed(2)}</td>
-            </tr>
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td><img src="${item.image}" class="productImg"></td>
+            <td>${item.name}</td>
+            <td>$${item.price.toFixed(2)}</td>
         `;
+
+        tbody.appendChild(row);
         total += item.price;
     });
 
-    cartDiv.innerHTML += `
-            <tr>
-                <td></td>
-                <td colspan="2"><strong>Total</strong></td>
-                <td><strong>$${total.toFixed(2)}</strong></td>
-            </tr>
-        </table>
+    const totalRow = document.createElement("tr");
+    totalRow.innerHTML = `
+        <td colspan="2"><strong>Total</strong></td>
+        <td><strong>$${total.toFixed(2)}</strong></td>
     `;
+    tbody.appendChild(totalRow);
 }
-

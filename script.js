@@ -105,7 +105,7 @@ function showProducts(maxPrice){
     });
 
     filteredProducts.sort((a,b) => a.price - b.price);
-    
+
     const meatDiv=document.getElementById("meatCategoryList");
     const dairyDiv=document.getElementById("dairyCategoryList");
     const altDiv=document.getElementById("alternativesCategoryList");
@@ -114,6 +114,7 @@ function showProducts(maxPrice){
     const fruitDiv=document.getElementById("fruitCategoryList");
     const grainDiv=document.getElementById("grainCategoryList");
     const fishDiv=document.getElementById("fishCategoryList");
+
     meatDiv.innerHTML="<h4>Meat</h4>";
     dairyDiv.innerHTML="<h4>Dairy</h4>";
     altDiv.innerHTML="<h4>Alternatives</h4>";
@@ -122,17 +123,27 @@ function showProducts(maxPrice){
     fruitDiv.innerHTML="<h4>Fruits</h4>";
     grainDiv.innerHTML="<h4>Grains</h4>";
     fishDiv.innerHTML="<h4>Fish</h4>";
-    
+
+    //variables to control the category view
+    const meatDivh4=document.querySelector("#meatCategoryList h4");
+    const dairyDivh4=document.getElementById("#dairyCategoryList h4");
+    const altDivh4=document.getElementById("#alternativesCategoryList h4");
+    const vegetableDivh4=document.getElementById("#vegetableCategoryList h4");
+    const beverageDivh4=document.getElementById("#beveragesCategoryList h4");
+    const fruitDivh4=document.getElementById("#fruitCategoryList h4");
+    const grainDivh4=document.getElementById("#grainCategoryList h4");
+    const fishDivh4=document.getElementById("#fishCategoryList h4");
+
     let sortedProductsByCat = sortCategories(filteredProducts);
 
-    //NOTE: Following 2 lines generated from Gemini (https://gemini.google.com/app) 
+    //NOTE: Following 2 lines inspired from Gemini (https://gemini.google.com/app) 
     Object.entries(sortedProductsByCat).forEach(([category, items]) => {
         items.forEach(item => {
             if (item.category == "meat"){
                 meatDiv.innerHTML += `
                 <input type="checkbox" id="product${item.name}"value="${item.name}">
                 ${item.name} - $${item.price.toFixed(2)}<br>
-                `;
+                `;   
             }
             else if (item.category == "dairy"){
                 dairyDiv.innerHTML += `
@@ -171,10 +182,10 @@ function showProducts(maxPrice){
                 `;
             }
             else if (item.category == "beverage"){
-                beverageDiv.innerHTML += `
-                <input type="checkbox" id="product${item.name}"value="${item.name}">
-                ${item.name} - $${item.price.toFixed(2)}<br>
-                `;
+                    beverageDiv.innerHTML += `
+                    <input type="checkbox" id="product${item.name}"value="${item.name}">
+                    ${item.name} - $${item.price.toFixed(2)}<br>
+                    `;
             }
         })  
     })
@@ -204,7 +215,3 @@ function displayCart(){
     });
     cartDiv.innerHTML += `<strong>Total: $${total.toFixed(2)}</strong>`;
 }
-
-
-
-    

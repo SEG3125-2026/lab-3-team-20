@@ -234,7 +234,7 @@ function displayCart() {
     cartDiv.innerHTML += `
             <tr>
                 <td></td>
-                <td><strong>Total</strong></td>
+                <td colspan="2"><strong>Total</strong></td>
                 <td><strong>$${total.toFixed(2)}</strong></td>
             </tr>
         </table>

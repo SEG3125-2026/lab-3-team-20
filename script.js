@@ -20,6 +20,17 @@ const products=[
     { name: "Carrot Juice", vegetarian:true, glutenFree:true,organic:false, price: 2.00, category: "beverage"}
 ];
 
+ let category_dictionary = {
+    meat_products: [],
+    dairy_products: [],
+    alternative_products: [],
+    beverage_products: [],
+    vegetable_products: [],
+    grain_products: [],
+    fruit_products: [],
+    fish_products: []
+};
+
 function openMenu(tabName){
     const tabs = document.getElementsByClassName("tabContent");
     for(let i=0; i<tabs.length; i++){
@@ -41,56 +52,8 @@ function getMaxPrice() {
     
 }
 
-function showProducts(maxPrice){
-    const diet=document.getElementById("diet").value;
-    const productType = document.getElementById("productType").value;
-    let filteredProducts=products.filter(product =>{
-        if (diet === "vegetarian" && !product.vegetarian) {
-            return false;
-        }
-        if (diet === "gluten-free" && !product.glutenFree) {
-            return false;
-        }
-        if (productType === "organic" && !product.organic) {
-            return false;
-        }
-        if (productType === "non-organic" && product.organic) {
-            return false;
-        } if(product.price > maxPrice){
-            return false;
-        }
-        return true;
-    });
-
-    filteredProducts.sort((a,b) => a.price - b.price);
-    const productDiv=document.getElementById("showProducts");
-    productDiv.innerHTML="";
-
-    filteredProducts.forEach((product,index) =>{
-        productDiv.innerHTML += `
-        <input type="checkbox" id="product${index}"value="${product.name}">
-        ${product.name} - $${product.price.toFixed(2)}<br>
-        `;
-    });
-
-    return filteredProducts;
-
-}
-//Adding categories to the product Page 
-
- let category_dictionary = {
-    meat_products: [],
-    dairy_products: [],
-    alternative_products: [],
-    beverage_products: [],
-    vegetable_products: [],
-    grain_products: [],
-    fruit_products: [],
-    fish_products: []
-}
-
-function sortCategories(){
-    products.forEach((product) => {
+function sortCategories(obj){
+    obj.forEach((product) => {
         if (product.category == "meat"){
             category_dictionary.meat_products.push(product);
         }
@@ -116,69 +79,106 @@ function sortCategories(){
             category_dictionary.grain_products.push(product);
         }     
     })
-    //const jsonString = JSON.stringify(category_dictionary);
-    //const categoryDiv = document.getElementById("categoryDiv");
-    //categoryDiv.textContent = jsonString;
+    return category_dictionary;
 }
 
-const category_button = document.getElementById("categoryButton");
-category_button.addEventListener("click", showCategories); //change to show after finishing
+function showProducts(maxPrice){
+    const diet=document.getElementById("diet").value;
+    const productType = document.getElementById("productType").value;
+    let filteredProducts=products.filter(product =>{
+        if (diet === "vegetarian" && !product.vegetarian) {
+            return false;
+        }
+        if (diet === "gluten-free" && !product.glutenFree) {
+            return false;
+        }
+        if (productType === "organic" && !product.organic) {
+            return false;
+        }
+        if (productType === "non-organic" && product.organic) {
+            return false;
+        } 
+        if(product.price > maxPrice){
+            return false;
+        }
+        return true;
+    });
 
-function showCategories(){
-    sortCategories();
-    //Note: Following 2 lines use help from AI for nested objects 
-    Object.entries(category_dictionary).forEach(([cat, items]) => {
+    filteredProducts.sort((a,b) => a.price - b.price);
+    
+    const meatDiv=document.getElementById("meatCategoryList");
+    const dairyDiv=document.getElementById("dairyCategoryList");
+    const altDiv=document.getElementById("alternativesCategoryList");
+    const vegetableDiv=document.getElementById("vegetableCategoryList");
+    const beverageDiv=document.getElementById("beveragesCategoryList");
+    const fruitDiv=document.getElementById("fruitCategoryList");
+    const grainDiv=document.getElementById("grainCategoryList");
+    const fishDiv=document.getElementById("fishCategoryList");
+    meatDiv.innerHTML="<h4>Meat</h4>";
+    dairyDiv.innerHTML="<h4>Dairy</h4>";
+    altDiv.innerHTML="<h4>Alternatives</h4>";
+    vegetableDiv.innerHTML="<h4>Vegetables</h4>";
+    beverageDiv.innerHTML="<h4>Beverages</h4>";
+    fruitDiv.innerHTML="<h4>Fruits</h4>";
+    grainDiv.innerHTML="<h4>Grains</h4>";
+    fishDiv.innerHTML="<h4>Fish</h4>";
+    
+    let sortedProductsByCat = sortCategories(filteredProducts);
+
+    //NOTE: Following 2 lines generated from Gemini (https://gemini.google.com/app) 
+    Object.entries(sortedProductsByCat).forEach(([category, items]) => {
         items.forEach(item => {
             if (item.category == "meat"){
-                let list = document.getElementById("meatCategoryList")
-                let li = document.createElement('li');
-                li.innerText = item.name;
-                list.appendChild(li);
+                meatDiv.innerHTML += `
+                <input type="checkbox" id="product${item.name}"value="${item.name}">
+                ${item.name} - $${item.price.toFixed(2)}<br>
+                `;
             }
             else if (item.category == "dairy"){
-                let list = document.getElementById("dairyCategoryList")
-                let li = document.createElement('li');
-                li.innerText = item.name;
-                list.appendChild(li);
+                dairyDiv.innerHTML += `
+                <input type="checkbox" id="product${item.name}"value="${item.name}">
+                ${item.name} - $${item.price.toFixed(2)}<br>
+                `;
             }
             else if (item.category == "vegetable"){
-                let list = document.getElementById("vegetableCategoryList")
-                let li = document.createElement('li');
-                li.innerText = item.name;
-                    list.appendChild(li);
+                vegetableDiv.innerHTML += `
+                <input type="checkbox" id="product${item.name}"value="${item.name}">
+                ${item.name} - $${item.price.toFixed(2)}<br>
+                `;
             }
             else if (item.category == "fruit"){
-                let list = document.getElementById("fruitCategoryList")
-                let li = document.createElement('li');
-                li.innerText = item.name;
-                    list.appendChild(li);
+                fruitDiv.innerHTML += `
+                <input type="checkbox" id="product${item.name}"value="${item.name}">
+                ${item.name} - $${item.price.toFixed(2)}<br>
+                `;
             }
             else if (item.category == "grain"){
-                let list = document.getElementById("grainCategoryList")
-                let li = document.createElement('li');
-                li.innerText = item.name;
-                    list.appendChild(li);
+                grainDiv.innerHTML += `
+                <input type="checkbox" id="product${item.name}"value="${item.name}">
+                ${item.name} - $${item.price.toFixed(2)}<br>
+                `;
             }
             else if (item.category == "fish"){
-                let list = document.getElementById("fishCategoryList")
-                let li = document.createElement('li');
-                li.innerText = item.name;
-                    list.appendChild(li);
+                fishDiv.innerHTML += `
+                <input type="checkbox" id="product${item.name}"value="${item.name}">
+                ${item.name} - $${item.price.toFixed(2)}<br>
+                `;
             }
             else if (item.category== "alternatives"){
-                let list = document.getElementById("alternativesCategoryList")
-                let li = document.createElement('li');
-                li.innerText = item.name;
-                    list.appendChild(li);
+                altDiv.innerHTML += `
+                <input type="checkbox" id="product${item.name}"value="${item.name}">
+                ${item.name} - $${item.price.toFixed(2)}<br>
+                `;
             }
             else if (item.category == "beverage"){
-                let list = document.getElementById("beverageCategoryList")
-                let li = document.createElement('li');
-                li.innerText = item.name;
-                    list.appendChild(li);
+                beverageDiv.innerHTML += `
+                <input type="checkbox" id="product${item.name}"value="${item.name}">
+                ${item.name} - $${item.price.toFixed(2)}<br>
+                `;
             }
         })  
     })
+    return sortedProductsByCat;
 }
 
 function addToCart(){

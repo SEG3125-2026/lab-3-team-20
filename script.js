@@ -20,16 +20,7 @@ const products=[
     { name: "Carrot Juice", vegetarian:true, glutenFree:true,organic:false, price: 2.00, category: "beverage",image:"images/carrotjuice.jpg"}
 ];
 
- let category_dictionary = {
-    meat_products: [],
-    dairy_products: [],
-    alternative_products: [],
-    beverage_products: [],
-    vegetable_products: [],
-    grain_products: [],
-    fruit_products: [],
-    fish_products: []
-};
+ 
 
 function openMenu(tabName){
     const tabs = document.getElementsByClassName("tabContent");
@@ -48,43 +39,58 @@ function openMenu(tabName){
 function getMaxPrice() {
     let x = document.getElementById("priceRange").value;
     document.getElementById("maxPrice").innerHTML = "$"+x;
-    showProducts(x);
-    
+    showProducts(x);  
 }
 
-function sortCategories(obj){
-    obj.forEach((product) => {
+
+function sortCategories(products){
+
+   let categories = {
+        meat_products: [],
+        dairy_products: [],
+        alternative_products: [],
+        beverage_products: [],
+        vegetable_products: [],
+        grain_products: [],
+        fruit_products: [],
+        fish_products: []
+    };
+
+    for(let i=0; i<products.length ;i++){
+        const product = products[i];
+
         if (product.category == "meat"){
-            category_dictionary.meat_products.push(product);
+            categories.meat_products.push(product);
         }
         else if(product.category == "dairy"){
-            category_dictionary.dairy_products.push(product);
+            categories.dairy_products.push(product);
         }
         else if(product.category == "beverage"){
-            category_dictionary.beverage_products.push(product);
+            categories.beverage_products.push(product);
         }
         else if(product.category == "alternatives"){
-            category_dictionary.alternative_products.push(product);
+            categories.alternative_products.push(product);
         }
         else if(product.category == "vegetable"){
-            category_dictionary.vegetable_products.push(product);
+            categories.vegetable_products.push(product);
         }
         else if(product.category == "fruit"){
-            category_dictionary.fruit_products.push(product);
+            categories.fruit_products.push(product);
         }
         else if(product.category == "fish"){
-            category_dictionary.fish_products.push(product);
+            categories.fish_products.push(product);
         }
         else if(product.category == "grain"){
-            category_dictionary.grain_products.push(product);
+            categories.grain_products.push(product);
         }     
-    })
-    return category_dictionary;
+    }
+    return categories;
 }
 
 function showProducts(maxPrice){
     const diet=document.getElementById("diet").value;
     const productType = document.getElementById("productType").value;
+
     let filteredProducts=products.filter(product =>{
         if (diet === "vegetarian" && !product.vegetarian) {
             return false;
@@ -105,6 +111,9 @@ function showProducts(maxPrice){
     });
 
     filteredProducts.sort((a,b) => a.price - b.price);
+
+    const categorized = sortCategories(filteredProducts);
+
 
     const meatDiv=document.getElementById("meatCategoryList");
     const dairyDiv=document.getElementById("dairyCategoryList");
@@ -187,6 +196,11 @@ function addToCart(){
         }
     }
     displayCart();
+    document.getElementById("products").style.display="none";
+
+    document.getElementById("cart").style.display="block";
+
+
 }
 
 function displayCart(){

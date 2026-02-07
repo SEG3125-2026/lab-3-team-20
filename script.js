@@ -203,13 +203,34 @@ function addToCart(){
 
 }
 
-function displayCart(){
-    const cartDiv=document.getElementById("showCart");
-    cartDiv.innerHTML="";
-    let total=0;
-    cart.forEach((item) =>{
-        cartDiv.innerHTML += `${item.name} - $${item.price.toFixed(2)}<br>`;
+function displayCart() {
+    const cartDiv = document.getElementById("showCart");
+    cartDiv.innerHTML = "";
+
+    let total = 0;
+
+    cartDiv.innerHTML = `
+        <table class="productTable">
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+            </tr>
+    `;
+    cart.forEach(item => {
+        cartDiv.innerHTML += `
+            <tr>
+                <td>${item.name}</td>
+                <td>$${item.price.toFixed(2)}</td>
+            </tr>
+        `;
         total += item.price;
     });
-    cartDiv.innerHTML += `<strong>Total: $${total.toFixed(2)}</strong>`;
+
+    cartDiv.innerHTML += `
+            <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>$${total.toFixed(2)}</strong></td>
+            </tr>
+        </table>
+    `;
 }

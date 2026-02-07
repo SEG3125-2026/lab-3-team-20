@@ -85,3 +85,23 @@ footer{
 #showProducts div{
     display:list-item;
 }
+
+.productImg{
+    width:60px;
+    height: auto;
+}
+
+
+.productTable{
+    border-collapse: collapse;
+    width: 80%;
+    margin-bottom:20px;
+}
+
+
+.productTable th, 
+.productTable td{
+    border: 1px solid #fa003f;
+    padding: 8px;
+    text-align: center;
+}

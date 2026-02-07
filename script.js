@@ -1,23 +1,23 @@
 let cart =[];
 
 const products=[
-    { name: "Chicken", vegetarian:false, glutenFree:true,organic:false, price: 9.99, category: "meat"},
-    { name: "Broccoli", vegetarian:true, glutenFree:true,organic:true, price: 1.99, category: "vegetable"},
-    { name: "Spinach", vegetarian:true, glutenFree:true,organic:true, price: 1.99, category: "vegetable"},
-    { name: "Cucumber", vegetarian:true, glutenFree:true,organic:true, price: 1.99, category: "vegetable"},
-    { name: "Bread", vegetarian:true, glutenFree:false,organic:false, price: 2.35, category: "grain"},
-    { name: "Salmon", vegetarian:false, glutenFree:true,organic:true, price: 9.23, category: "fish"},
-    { name: "Talapia", vegetarian:false, glutenFree:true,organic:true, price: 8.00, category: "fish"},
-    { name: "Cod", vegetarian:false, glutenFree:true,organic:true, price: 10.00, category: "fish"},
-    { name: "Apples", vegetarian:true, glutenFree:true,organic:true, price: 5.49, category: "fruit"},
-    { name: "Strawberries", vegetarian:true, glutenFree:true,organic:true, price: 3.00, category: "fruit"},
-    { name: "Cherries", vegetarian:true, glutenFree:true,organic:true, price: 3.00, category: "fruit"},
-    { name: "Cheese", vegetarian:true, glutenFree:true,organic:false, price: 4.25, category: "dairy"},
-    { name: "Milk", vegetarian:true, glutenFree:true,organic:false, price: 2.50, category: "dairy"},
-    { name: "Eggs", vegetarian:true, glutenFree:true,organic:false, price: 2.75, category: "alternatives"},
-    { name: "Gluten-Free Pasta", vegetarian:true, glutenFree:true,organic:false, price: 3.50, category: "grain"},
-    { name: "Orange Juice", vegetarian:true, glutenFree:true,organic:false, price: 3.49, category: "beverage"},
-    { name: "Carrot Juice", vegetarian:true, glutenFree:true,organic:false, price: 2.00, category: "beverage"}
+    { name: "Chicken", vegetarian:false, glutenFree:true,organic:false, price: 9.99, category: "meat",image:"images/chicken.jpg"},
+    { name: "Broccoli", vegetarian:true, glutenFree:true,organic:true, price: 1.99, category: "vegetable",image:"images/broccoli.jpg"},
+    { name: "Spinach", vegetarian:true, glutenFree:true,organic:true, price: 1.99, category: "vegetable",image:"images/spinach.jpg"},
+    { name: "Cucumber", vegetarian:true, glutenFree:true,organic:true, price: 1.99, category: "vegetable",image:"images/cucumber.jpg"},
+    { name: "Bread", vegetarian:true, glutenFree:false,organic:false, price: 2.35, category: "grain",image:"images/bread.jpg"},
+    { name: "Salmon", vegetarian:false, glutenFree:true,organic:true, price: 9.23, category: "fish",image:"images/salmon.jpg"},
+    { name: "Talapia", vegetarian:false, glutenFree:true,organic:true, price: 8.00, category: "fish", image:"images/talapia.jpg"},
+    { name: "Cod", vegetarian:false, glutenFree:true,organic:true, price: 10.00, category: "fish",image:"images/cod.jpg"},
+    { name: "Apples", vegetarian:true, glutenFree:true,organic:true, price: 5.49, category: "fruit",image:"images/apples.jpg"},
+    { name: "Strawberries", vegetarian:true, glutenFree:true,organic:true, price: 3.00, category: "fruit",image:"images/strawberries.jpg"},
+    { name: "Cherries", vegetarian:true, glutenFree:true,organic:true, price: 3.00, category: "fruit",image:"images/cherries.jpg"},
+    { name: "Cheese", vegetarian:true, glutenFree:true,organic:false, price: 4.25, category: "dairy",image:"images/cheese.jpg"},
+    { name: "Milk", vegetarian:true, glutenFree:true,organic:false, price: 2.50, category: "dairy",image:"images/milk.jpg"},
+    { name: "Eggs", vegetarian:true, glutenFree:true,organic:false, price: 2.75, category: "alternatives",image:"images/eggs.jpg"},
+    { name: "Gluten-Free Pasta", vegetarian:true, glutenFree:true,organic:false, price: 3.50, category: "grain",image:"images/pasta.jpg"},
+    { name: "Orange Juice", vegetarian:true, glutenFree:true,organic:false, price: 3.49, category: "beverage",image:"images/orangejuice.jpg"},
+    { name: "Carrot Juice", vegetarian:true, glutenFree:true,organic:false, price: 2.00, category: "beverage",image:"images/carrotjuice.jpg"}
 ];
 
  let category_dictionary = {
@@ -115,81 +115,65 @@ function showProducts(maxPrice){
     const grainDiv=document.getElementById("grainCategoryList");
     const fishDiv=document.getElementById("fishCategoryList");
 
-    meatDiv.innerHTML="<h4>Meat</h4>";
-    dairyDiv.innerHTML="<h4>Dairy</h4>";
-    altDiv.innerHTML="<h4>Alternatives</h4>";
-    vegetableDiv.innerHTML="<h4>Vegetables</h4>";
-    beverageDiv.innerHTML="<h4>Beverages</h4>";
-    fruitDiv.innerHTML="<h4>Fruits</h4>";
-    grainDiv.innerHTML="<h4>Grains</h4>";
-    fishDiv.innerHTML="<h4>Fish</h4>";
+    meatDiv.innerHTML = `
+        <h4>Meat</h4>
+        <table class="productTable"><tr><th>Select</th><th>Image</th><th>Product</th><th>Price</th></tr></table>
+    `;
 
-    //variables to control the category view
-    const meatDivh4=document.querySelector("#meatCategoryList h4");
-    const dairyDivh4=document.getElementById("#dairyCategoryList h4");
-    const altDivh4=document.getElementById("#alternativesCategoryList h4");
-    const vegetableDivh4=document.getElementById("#vegetableCategoryList h4");
-    const beverageDivh4=document.getElementById("#beveragesCategoryList h4");
-    const fruitDivh4=document.getElementById("#fruitCategoryList h4");
-    const grainDivh4=document.getElementById("#grainCategoryList h4");
-    const fishDivh4=document.getElementById("#fishCategoryList h4");
+    dairyDiv.innerHTML = `
+        <h4>Dairy</h4>
+        <table class="productTable"><tr><th>Select</th><th>Image</th><th>Product</th><th>Price</th></tr></table>
+    `;
 
-    let sortedProductsByCat = sortCategories(filteredProducts);
+    vegetableDiv.innerHTML = `
+        <h4>Vegetables</h4>
+        <table class="productTable"><tr><th>Select</th><th>Image</th><th>Product</th><th>Price</th></tr></table>
+    `;
 
-    //NOTE: Following 2 lines inspired from Gemini (https://gemini.google.com/app) 
-    Object.entries(sortedProductsByCat).forEach(([category, items]) => {
-        items.forEach(item => {
-            if (item.category == "meat"){
-                meatDiv.innerHTML += `
-                <input type="checkbox" id="product${item.name}"value="${item.name}">
-                ${item.name} - $${item.price.toFixed(2)}<br>
-                `;   
-            }
-            else if (item.category == "dairy"){
-                dairyDiv.innerHTML += `
-                <input type="checkbox" id="product${item.name}"value="${item.name}">
-                ${item.name} - $${item.price.toFixed(2)}<br>
-                `;
-            }
-            else if (item.category == "vegetable"){
-                vegetableDiv.innerHTML += `
-                <input type="checkbox" id="product${item.name}"value="${item.name}">
-                ${item.name} - $${item.price.toFixed(2)}<br>
-                `;
-            }
-            else if (item.category == "fruit"){
-                fruitDiv.innerHTML += `
-                <input type="checkbox" id="product${item.name}"value="${item.name}">
-                ${item.name} - $${item.price.toFixed(2)}<br>
-                `;
-            }
-            else if (item.category == "grain"){
-                grainDiv.innerHTML += `
-                <input type="checkbox" id="product${item.name}"value="${item.name}">
-                ${item.name} - $${item.price.toFixed(2)}<br>
-                `;
-            }
-            else if (item.category == "fish"){
-                fishDiv.innerHTML += `
-                <input type="checkbox" id="product${item.name}"value="${item.name}">
-                ${item.name} - $${item.price.toFixed(2)}<br>
-                `;
-            }
-            else if (item.category== "alternatives"){
-                altDiv.innerHTML += `
-                <input type="checkbox" id="product${item.name}"value="${item.name}">
-                ${item.name} - $${item.price.toFixed(2)}<br>
-                `;
-            }
-            else if (item.category == "beverage"){
-                    beverageDiv.innerHTML += `
-                    <input type="checkbox" id="product${item.name}"value="${item.name}">
-                    ${item.name} - $${item.price.toFixed(2)}<br>
-                    `;
-            }
-        })  
-    })
-    return sortedProductsByCat;
+    fruitDiv.innerHTML = `
+        <h4>Fruits</h4>
+        <table class="productTable"><tr><th>Select</th><th>Image</th><th>Product</th><th>Price</th></tr></table>
+    `;
+
+    grainDiv.innerHTML = `
+        <h4>Grains</h4>
+        <table class="productTable"><tr><th>Select</th><th>Image</th><th>Product</th><th>Price</th></tr></table>
+    `;
+
+    fishDiv.innerHTML = `
+        <h4>Fish</h4>
+        <table class="productTable"><tr><th>Select</th><th>Image</th><th>Product</th><th>Price</th></tr></table>
+    `;
+
+    altDiv.innerHTML = `
+        <h4>Alternatives</h4>
+        <table class="productTable"><tr><th>Select</th><th>Image</th><th>Product</th><th>Price</th></tr></table>
+    `;
+
+    beverageDiv.innerHTML = `
+        <h4>Beverages</h4>
+        <table class="productTable"><tr><th>Select</th><th>Image</th><th>Product</th><th>Price</th></tr></table>
+    `;
+
+    filteredProducts.forEach(item => {
+        const row = `
+            <tr>
+                <td><input type="checkbox" value="${item.name}"></td>
+                <td><img src="${item.image}" class="productImg"></td>
+                <td>${item.name}</td>
+                <td>$${item.price.toFixed(2)}</td>
+            </tr>
+        `;
+
+        if (item.category ==="meat") meatDiv.querySelector("table").innerHTML += row;
+        else if (item.category=== "dairy") dairyDiv.querySelector("table").innerHTML += row;
+        else if (item.category=== "vegetable") vegetableDiv.querySelector("table").innerHTML += row;
+        else if (item.category=== "fruit") fruitDiv.querySelector("table").innerHTML += row;
+        else if (item.category=== "grain") grainDiv.querySelector("table").innerHTML += row;
+        else if (item.category=== "fish") fishDiv.querySelector("table").innerHTML += row;
+        else if (item.category=== "alternatives") altDiv.querySelector("table").innerHTML += row;
+        else if (item.category=== "beverage") beverageDiv.querySelector("table").innerHTML += row;
+    });
 }
 
 function addToCart(){

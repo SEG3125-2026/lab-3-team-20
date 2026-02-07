@@ -218,6 +218,8 @@ function displayCart() {
             </tr>
     `;
 
+    const table = cartDiv.querySelector("table");
+    
     cart.forEach(item => {
         cartDiv.innerHTML += `
             <tr>

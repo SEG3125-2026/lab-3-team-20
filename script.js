@@ -39,8 +39,7 @@ function openMenu(tabName){
 function getMaxPrice() {
     let x = document.getElementById("priceRange").value;
     document.getElementById("maxPrice").innerHTML = "$"+x;
-    showProducts(x);
-    
+    showProducts(x);  
 }
 
 
@@ -217,6 +216,11 @@ function addToCart(){
         }
     }
     displayCart();
+    document.getElementById("products").style.display="none";
+
+    document.getElementById("cart").style.display="block";
+
+
 }
 
 function displayCart(){

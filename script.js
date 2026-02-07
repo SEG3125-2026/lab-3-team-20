@@ -20,16 +20,7 @@ const products=[
     { name: "Carrot Juice", vegetarian:true, glutenFree:true,organic:false, price: 2.00, category: "beverage"}
 ];
 
- let category_dictionary = {
-    meat_products: [],
-    dairy_products: [],
-    alternative_products: [],
-    beverage_products: [],
-    vegetable_products: [],
-    grain_products: [],
-    fruit_products: [],
-    fish_products: []
-};
+ 
 
 function openMenu(tabName){
     const tabs = document.getElementsByClassName("tabContent");
@@ -52,39 +43,55 @@ function getMaxPrice() {
     
 }
 
-function sortCategories(obj){
-    obj.forEach((product) => {
+
+function sortCategories(products){
+
+   let categories = {
+        meat_products: [],
+        dairy_products: [],
+        alternative_products: [],
+        beverage_products: [],
+        vegetable_products: [],
+        grain_products: [],
+        fruit_products: [],
+        fish_products: []
+    };
+
+    for(let i=0; i<products.length ;i++){
+        const product = products[i];
+
         if (product.category == "meat"){
-            category_dictionary.meat_products.push(product);
+            categories.meat_products.push(product);
         }
         else if(product.category == "dairy"){
-            category_dictionary.dairy_products.push(product);
+            categories.dairy_products.push(product);
         }
         else if(product.category == "beverage"){
-            category_dictionary.beverage_products.push(product);
+            categories.beverage_products.push(product);
         }
         else if(product.category == "alternatives"){
-            category_dictionary.alternative_products.push(product);
+            categories.alternative_products.push(product);
         }
         else if(product.category == "vegetable"){
-            category_dictionary.vegetable_products.push(product);
+            categories.vegetable_products.push(product);
         }
         else if(product.category == "fruit"){
-            category_dictionary.fruit_products.push(product);
+            categories.fruit_products.push(product);
         }
         else if(product.category == "fish"){
-            category_dictionary.fish_products.push(product);
+            categories.fish_products.push(product);
         }
         else if(product.category == "grain"){
-            category_dictionary.grain_products.push(product);
+            categories.grain_products.push(product);
         }     
-    })
-    return category_dictionary;
+    }
+    return categories;
 }
 
 function showProducts(maxPrice){
     const diet=document.getElementById("diet").value;
     const productType = document.getElementById("productType").value;
+
     let filteredProducts=products.filter(product =>{
         if (diet === "vegetarian" && !product.vegetarian) {
             return false;
@@ -106,6 +113,9 @@ function showProducts(maxPrice){
 
     filteredProducts.sort((a,b) => a.price - b.price);
 
+    const categorized = sortCategories(filteredProducts);
+
+
     const meatDiv=document.getElementById("meatCategoryList");
     const dairyDiv=document.getElementById("dairyCategoryList");
     const altDiv=document.getElementById("alternativesCategoryList");
@@ -124,20 +134,24 @@ function showProducts(maxPrice){
     grainDiv.innerHTML="<h4>Grains</h4>";
     fishDiv.innerHTML="<h4>Fish</h4>";
 
-    //variables to control the category view
-    const meatDivh4=document.querySelector("#meatCategoryList h4");
-    const dairyDivh4=document.getElementById("#dairyCategoryList h4");
-    const altDivh4=document.getElementById("#alternativesCategoryList h4");
-    const vegetableDivh4=document.getElementById("#vegetableCategoryList h4");
-    const beverageDivh4=document.getElementById("#beveragesCategoryList h4");
-    const fruitDivh4=document.getElementById("#fruitCategoryList h4");
-    const grainDivh4=document.getElementById("#grainCategoryList h4");
-    const fishDivh4=document.getElementById("#fishCategoryList h4");
+    
+    // // 6️⃣ Render products by category
+    // Object.entries(categorized).forEach(([category, items]) => {
+    //     const div = categoryDivs[category];
+    //     if (!div) return;
 
-    let sortedProductsByCat = sortCategories(filteredProducts);
+    //     items.forEach(item => {
+    //         const safeId = item.name.replace(/\s+/g, "-");
+
+    //         div.innerHTML += `
+    //             <input type="checkbox" value="${item.name}" id="product-${safeId}">
+    //             ${item.name} - $${item.price.toFixed(2)}<br>
+    //         `;
+    //     });
+    // });
 
     //NOTE: Following 2 lines inspired from Gemini (https://gemini.google.com/app) 
-    Object.entries(sortedProductsByCat).forEach(([category, items]) => {
+    Object.entries(categorized).forEach(([category, items]) => {
         items.forEach(item => {
             if (item.category == "meat"){
                 meatDiv.innerHTML += `

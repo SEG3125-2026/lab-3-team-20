@@ -37,16 +37,16 @@ function openMenu(tabName){
 function openbyCategory(categoryName){
     const categories = document.getElementsByClassName("CategoryList");
     const clickedCategory = document.getElementById(categoryName);
-    let isClicked = false;
+    var currentDivShown = null;
 
-    if(clickedCategory.style.display="block"){
+    if(clickedCategory.style.display=="block"){
         for(let i=0; i<categories.length; i++){
             if(!(clickedCategory==categories[i].id) && (categories[i].style.display === "none")){
-                isClicked = true;
+                currentDivShown = clickedCategory;
             }
         }
     }
-    if(!isClicked){
+    if(currentDivShown != clickedCategory){
         for(let i=0; i<categories.length; i++){
             if((categories[i].id===categoryName)){
                 categories[i].style.display = "block";

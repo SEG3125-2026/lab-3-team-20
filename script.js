@@ -57,7 +57,7 @@ function openbyCategory(categoryName){
     }else{
         for(let i=0; i<categories.length; i++){
            categories[i].style.display = "block";
-           isClicked = false;
+           currentDivShown = null;
         }
     }
 }

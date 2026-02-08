@@ -33,6 +33,7 @@ function openMenu(tabName){
     }
 }
 
+//Code for openbyCategory function inspired by this answer from stack overflow: https://stackoverflow.com/questions/31799603/show-hide-multiple-divs-javascript
 function openbyCategory(categoryName){
     const categories = document.getElementsByClassName("CategoryList");
     const clickedCategory = document.getElementById(categoryName);

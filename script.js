@@ -20,8 +20,6 @@ const products=[
     { name: "Carrot Juice", vegetarian:true, glutenFree:true,organic:false, price: 2.00, category: "beverage",image:"images/carrotjuice.jpg"}
 ];
 
- 
-
 function openMenu(tabName){
     const tabs = document.getElementsByClassName("tabContent");
     for(let i=0; i<tabs.length; i++){
@@ -33,15 +31,41 @@ function openMenu(tabName){
     if (clickedTab==="products"){
         showProducts(document.getElementById("priceRange").value);
     }
-
 }
 
+function openbyCategory(categoryName){
+    const categories = document.getElementsByClassName("CategoryList");
+    const clickedCategory = document.getElementById(categoryName);
+    let isClicked = false;
+
+    if(clickedCategory.style.display="block"){
+        for(let i=0; i<categories.length; i++){
+            if(!(clickedCategory==categories[i].id) && (categories[i].style.display === "none")){
+                isClicked = true;
+            }
+        }
+    }
+    if(!isClicked){
+        for(let i=0; i<categories.length; i++){
+            if((categories[i].id===categoryName)){
+                categories[i].style.display = "block";
+            }else{
+                categories[i].style.display = "none";
+            }
+        }
+    }else{
+        for(let i=0; i<categories.length; i++){
+           categories[i].style.display = "block";
+           isClicked = false;
+        }
+    }
+}
+        
 function getMaxPrice() {
     let x = document.getElementById("priceRange").value;
     document.getElementById("maxPrice").innerHTML = "$"+x;
     showProducts(x);  
 }
-
 
 function sortCategories(products){
 
@@ -113,7 +137,6 @@ function showProducts(maxPrice){
     filteredProducts.sort((a,b) => a.price - b.price);
 
     const categorized = sortCategories(filteredProducts);
-
 
     const meatDiv=document.getElementById("meatCategoryList");
     const dairyDiv=document.getElementById("dairyCategoryList");
@@ -199,8 +222,6 @@ function addToCart(){
     document.getElementById("products").style.display="none";
 
     document.getElementById("cart").style.display="block";
-
-
 }
 
 function displayCart() {

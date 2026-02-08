@@ -53,7 +53,7 @@ footer{
     color: #fa003f; 
 }
 
-.tabContent{
+.tabContent, #showProducts div{
     display: none;
 }
 
@@ -85,19 +85,20 @@ footer{
 #showProducts div{
     display:list-item;
 }
+#showProducts div:hover{
+    cursor: pointer;
+}
 
 .productImg{
     width:60px;
     height: auto;
 }
 
-
 .productTable{
     border-collapse: collapse;
     width: 80%;
     margin-bottom:20px;
 }
-
 
 .productTable th, 
 .productTable td{

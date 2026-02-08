@@ -12,14 +12,14 @@
         <body>
             <div class="tab">
             <button class="tabLinks" onclick="openMenu('user')">User</button>
-            <button class="tabLinks" onclick="openMenu('products')">Products</button>
-            <button class="tabLinks" onclick="openMenu('cart')">Cart</button>
+            <button class="tabLinks" onclick="openMenu('products')">Shop by Products</button>
+            <button class="tabLinks" onclick="openMenu('cart')">View Cart</button>
         </div>
 
         <div class="tabContent" id ="user">
-            <h3 class="header">User Information</h3>
-            <p>Tell us your dietary needs:</p>
-            Choose an option:
+            <h3 class="header">About You</h3>
+            <p>What are your dietary preferences?</p>
+            Select the diet that aligns with you:
             <select id="diet" name="diet">
                 <option value=""></option>
                 <option value="vegetarian">Vegetarian </option>
@@ -28,7 +28,7 @@
             </select>
             <br><br>
 
-            What do you prefer:
+            Organic or non-organic products:
             <select id="productType" name="productType">
                 <option value=""></option>
                 <option value="organic">Organic</option>
@@ -37,11 +37,11 @@
         </div>
 
         <div class ="tabContent" id="products">
-            <h3 class="header">Product for you</h3>
+            <h3 class="header">Your Products</h3>
             <p>We selected these items for you based on your preferences.</p>
             
             <div class="slidecontainer">
-                <p>Select the max price you wish to pay:</p>
+                <p>Please select the max price you wish to pay:</p>
                 <input type="range" min="1" max="10" value="10" class="slider" id="priceRange" onclick="getMaxPrice()">
                 <br>
                 <p class="sameLine">The max price is currently: </p>
@@ -49,16 +49,16 @@
             </div>
             
             <br>
-            Choose items to buy:
+            <p id="browseText">Browse products</p>
             <div id="showProducts">
-                <div id="meatCategoryList"></div>
-                <div id="fishCategoryList"></div> 
-                <div id="alternativesCategoryList"></div>
-                <div id="vegetableCategoryList"></div>
-                <div id="fruitCategoryList"></div>
-                <div id="dairyCategoryList"></div>
-                <div id="beveragesCategoryList"></div>
-                <div id="grainCategoryList"></div>
+                <div class="CategoryList" id="meatCategoryList" onclick="openbyCategory('meatCategoryList')"></div>
+                <div class="CategoryList" id="fishCategoryList" onclick="openbyCategory('fishCategoryList')"></div> 
+                <div class="CategoryList" id="alternativesCategoryList" onclick="openbyCategory('alternativesCategoryList')"></div>
+                <div class="CategoryList" id="vegetableCategoryList" onclick="openbyCategory('vegetableCategoryList')"></div>
+                <div class="CategoryList" id="fruitCategoryList" onclick="openbyCategory('fruitCategoryList')"></div>
+                <div class="CategoryList" id="dairyCategoryList" onclick="openbyCategory('dairyCategoryList')"></div>
+                <div class="CategoryList" id="beveragesCategoryList" onclick="openbyCategory('beveragesCategoryList')"></div>
+                <div class="CategoryList" id="grainCategoryList" onclick="openbyCategory('grainCategoryList')"></div>
             </div>
 
             <button id="addCart" type="button" onclick="addToCart()">Add items to your cart</button>
